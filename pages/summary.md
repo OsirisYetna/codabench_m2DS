@@ -1,6 +1,6 @@
 
 <div align="center">
-    <img src="logo.png" alt="Logo" width="25%">
+    <img src="https://assets.roche.com/f/173873/768x768/6d7c879b7f/molecule-animated.gif" alt="Logo" width="25%">
 </div>
 
 # **Challenge : Molecular Property Prediction**
