@@ -44,12 +44,12 @@ leaderboards:
       - title: Test Accuracy
         key: test
         index: 0
-        sorting: asc
+        sorting: desc
       - title: Train time
         key: train_time
         index: 1
-        sorting: desc
+        sorting: asc
       - title: Test time
         key: test_time
         index: 2
-        sorting: desc
+        sorting: asc
