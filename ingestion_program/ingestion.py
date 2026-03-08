@@ -28,6 +28,8 @@ def get_data():
     return X_train, y_train, X_test
 
 
+
+
 def print_bar():
     """Display a separator bar."""
     print("-" * 10)
