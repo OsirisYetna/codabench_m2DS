@@ -1,6 +1,12 @@
 # Seed:
 
-```
+```python
+import numpy as np
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.ensemble import RandomForestClassifier
+from rdkit import Chem
+from rdkit.Chem import rdFingerprintGenerator
+
 class RFMorganBaseline(BaseEstimator, ClassifierMixin):
     def __init__(self, n_estimators=100, radius=2, nBits=1024):
         """
@@ -10,24 +16,19 @@ class RFMorganBaseline(BaseEstimator, ClassifierMixin):
         self.n_estimators = n_estimators
         self.radius = radius
         self.nBits = nBits
-        self.model = RandomForestClassifier(
-            n_estimators=self.n_estimators, 
-            random_state=42,
-            n_jobs=-1
-        )
-        # Initialize the Morgan fingerprint generator
-        self.mfpgen = rdFingerprintGenerator.GetMorganGenerator(radius=self.radius, fpSize=self.nBits)
+        
+    def _get_generator(self):
+        return rdFingerprintGenerator.GetMorganGenerator(radius=self.radius, fpSize=self.nBits)
         
     def _smiles_to_fps(self, X):
         fps = []
+        mfpgen = self._get_generator()
         for smiles in X:
             mol = Chem.MolFromSmiles(smiles)
             if mol is not None:
-                # Calculate Morgan Fingerprint (equivalent to ECFP4 if radius=2)
-                fp = self.mfpgen.GetFingerprintAsNumPy(mol)
+                fp = mfpgen.GetFingerprintAsNumPy(mol)
                 fps.append(fp)
             else:
-                # Handle invalid smiles
                 fps.append(np.zeros(self.nBits))
         return np.array(fps)
 
@@ -35,6 +36,11 @@ class RFMorganBaseline(BaseEstimator, ClassifierMixin):
         """
         Training of the model
         """
+        self.model = RandomForestClassifier(
+            n_estimators=self.n_estimators, 
+            random_state=42,
+            n_jobs=-1
+        )
         print("Converting SMILES to Morgan Fingerprints...")
         X_fp = self._smiles_to_fps(X)
         

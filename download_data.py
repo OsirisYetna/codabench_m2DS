@@ -1,13 +1,13 @@
 """Fetcher for Codabench data from Hugging Face.
 
 Downloads the BACE dataset and saves it in the expected bundle structure:
-    data/
-    ├── dev_phase/
-        ├── input_data/
-        │   ├── train.csv          # SMILES + Label  (training set)
-        │   └── test.csv           # SMILES only     (test features, no labels)
-        └── reference_data/
-            └── test_labels.csv    # Label only      (ground truth for scoring)
+
+    dev_phase/
+    ├── input_data/
+    │   ├── train.csv          # SMILES + Label  (training set)
+    │   └── test.csv           # SMILES only     (test features, no labels)
+    └── reference_data/
+        └── test_labels.csv    # Label only      (ground truth for scoring)
 """
 
 import argparse
@@ -19,8 +19,8 @@ from rdkit.Chem import Descriptors  # type: ignore
 
 # Paths
 ROOT               = Path(__file__).parent
-INPUT_DATA_DIR     = ROOT /"data" / "dev_phase" / "input_data"
-REFERENCE_DATA_DIR = ROOT / "data" / "dev_phase" / "reference_data"
+INPUT_DATA_DIR     = ROOT / "dev_phase" / "input_data"
+REFERENCE_DATA_DIR = ROOT / "dev_phase" / "reference_data"
 
 # Challenge config
 CHALLENGE_NAME = "bace_classifier"
