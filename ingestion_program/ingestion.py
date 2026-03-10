@@ -8,7 +8,7 @@ import pandas as pd
 import argparse
 
 # Default Paths (useful for docker run if no args provided)
-input_dir = "/app/dev_phase/input_data/"  # Input data (train.csv, test.csv)
+input_dir = "/app/input_data/"  # Input data (train.csv, test.csv)
 output_dir = "/app/output/"  # For the predictions
 program_dir = "/app/program"
 submission_dir = "/app/ingested_program"  # The code submitted by participant

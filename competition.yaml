@@ -3,6 +3,7 @@ title: ChemSmiles classification
 description: 'Predict the class of a molecule based on its SMILES representation.'
 image: logo.png
 registration_auto_approve: True  # if True, do not require approval from admin to join the comp
+docker_image: thomasinovic/datacamp33:v2
 
 terms: pages/terms.md
 pages:
@@ -23,6 +24,7 @@ tasks:
     reference_data: dev_phase/reference_data/
     ingestion_program: ingestion_program/
     scoring_program: scoring_program/
+    docker_image: thomasinovic/datacamp33:v2
 
 solutions:
   - index: 0
